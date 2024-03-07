@@ -116,7 +116,9 @@ function ToolsFunc() {
           {Welcome.map((data, index) => (
             <div key={index} className="w-full">
               <img src={data.photo} alt="img1" className="p-3" />
-              <h2 className="font-bold text-xl md:text-2xl">{data.title}</h2>
+              <h2 className="font-medium text-xl md:text-2xl p-3">
+                {data.title}
+              </h2>
               <p className="p-3 text-center md:text-left">{data.description}</p>
             </div>
           ))}
@@ -125,7 +127,9 @@ function ToolsFunc() {
           {Welcome1.map((data, index) => (
             <div key={index} className="w-full">
               <img src={data.photo} alt="img1" className="p-3" />
-              <h1 className="font-bold text-xl md:text-2xl">{data.title}</h1>
+              <h1 className="font-medium text-xl md:text-2xl p-3">
+                {data.title}
+              </h1>
               <p className="p-3 text-center md:text-left">{data.description}</p>
             </div>
           ))}
@@ -134,7 +138,9 @@ function ToolsFunc() {
           {Welcome2.map((data, index) => (
             <div key={index} className="w-full">
               <img src={data.photo} alt="img1" className="p-3" />
-              <h1 className="font-bold text-xl md:text-2xl">{data.title}</h1>
+              <h1 className="font-medium text-xl md:text-2xl p-3">
+                {data.title}
+              </h1>
               <p className="p-3 text-center md:text-left">{data.description}</p>
             </div>
           ))}
