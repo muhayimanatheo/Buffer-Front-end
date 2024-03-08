@@ -2,6 +2,8 @@ import img1 from "../../images/img1.png";
 import img2 from "../../images/img2.jpg";
 import lukas from "../../images/lukas.jpg";
 import joshua from "../../images/joshua.jpg";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ToolsFunc() {
   const Welcome = [
@@ -31,6 +33,36 @@ function ToolsFunc() {
         "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
     },
   ];
+
+  const links = [
+    {
+      name: "Latest Updates",
+    },
+    {
+      name: "Small Business",
+    },
+    {
+      name: "Social Media Marketing",
+    },
+    {
+      name: "News",
+    },
+    {
+      name: "Podcast",
+    },
+    {
+      name: "Open Blog",
+    },
+    {
+      name: "Case Studies",
+    },
+  ];
+  const [activeLink, setActiveLink] = useState("Latest Updates");
+
+  const handleClick = (tab) => {
+    setActiveLink(tab);
+  };
+
   return (
     <>
       <main className="flex flex-col md:flex-row mx-5">
@@ -52,7 +84,17 @@ function ToolsFunc() {
             of
             <br /> work.
           </p>
-
+          <div className="flex space-x-5 ">
+            <span>
+              <p>Apr27,2023</p>
+            </span>
+            <span>
+              <p>5 min read</p>
+            </span>
+            <span>
+              <p>Apr27,2023</p>
+            </span>
+          </div>
           <div className="flex justify-center md:justify-start">
             <span className="">
               <img
@@ -73,42 +115,20 @@ function ToolsFunc() {
         </div>
       </main>
       <div className="py-6 px-2 sm:py-8 sm:px-4 md:py-10 md:px-6 lg:py-12 lg:px-8 xl:py-14 xl:px-10">
-        <ul className="flex flex-wrap gap-4 justify-start sm:justify-center md:justify-start">
-          <li>
-            <a href="#/" class="">
-              Latest Update
-            </a>
-          </li>
-          <li>
-            <a href="#/" class="">
-              Small Business
-            </a>
-          </li>
-          <li>
-            <a href="#/" class="">
-              Social Media Marketing
-            </a>
-          </li>
-          <li>
-            <a href="#/" class="">
-              News
-            </a>
-          </li>
-          <li>
-            <a href="#/" class="">
-              Podcast
-            </a>
-          </li>
-          <li>
-            <a href="#/" class="">
-              Open Blog
-            </a>
-          </li>
-          <li>
-            <a href="#/" class="">
-              Case Studies
-            </a>
-          </li>
+        <ul className="flex flex-wrap gap-4 justify-start sm:justify-center md:justify-start border-b-[2px] ">
+          {links.map((link) => (
+            <Link
+              onClick={() => handleClick(link.name)}
+              className={`text-gray-500 hover:text-blue-700 pb-2 ${
+                activeLink === link.name
+                  ? "border-b-2 border-blue-700 -mb-[2px] text-blue-700"
+                  : ""
+              }`}
+              key={link.name}
+            >
+              {link.name}
+            </Link>
+          ))}
         </ul>
       </div>
       <div className="flex flex-cols-3 w-full mx-3">
