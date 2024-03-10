@@ -1,9 +1,9 @@
 import img1 from "../../images/img1.png";
-import img2 from "../../images/img2.jpg";
 import lukas from "../../images/lukas.jpg";
 import joshua from "../../images/joshua.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import eyeglasses from "../../images/eyeglasses.svg";
 
 function ToolsFunc() {
   const Welcome = [
@@ -13,24 +13,31 @@ function ToolsFunc() {
         "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
       description:
         "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+      name: "Latest Updates",
     },
-  ];
-  const Welcome1 = [
     {
       photo: lukas,
       title:
         "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
       description:
         "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+      name: "Latest Updates",
     },
-  ];
-  const Welcome2 = [
     {
       photo: joshua,
       title:
         "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
       description:
         "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+      name: "News",
+    },
+    {
+      photo: joshua,
+      title:
+        "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
+      description:
+        "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+      name: "Latest Updates",
     },
   ];
 
@@ -63,14 +70,35 @@ function ToolsFunc() {
     setActiveLink(tab);
   };
 
+  const filterNew = Welcome.filter((item) => item.name === activeLink);
+
   return (
     <>
-      <main className="flex flex-col md:flex-row mx-5">
+      <main className="flex flex-col md:flex-row mx-5 mt-20 my-5">
         <div className="w-full md:w-1/2 flex justify-center">
-          <img src={img1} alt="img1" className="max-w-full" />
+          <img src={img1} alt="img1" className=" w-full h-80 mt-2" />
         </div>
         <div className="mx-4 md:mx-7 my-4 md:my-0">
-          <p className="text-center md:text-left">publication open</p>
+          <span className=" flex items-center">
+            <p className="text-center md:text-left">Publication </p>
+            <svg
+              className="w-4 h-4 text-gray-800 dark:text-white items-center pt-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m9 5 7 7-7 7"
+              />
+            </svg>
+            <p className="font-semibold">Open</p>
+          </span>
+
           <h1 className="font-bold text-2xl md:text-4xl p-3 text-center md:text-left">
             Trust, Transparency, and <br /> Curiosity: Batsirai Chada on
             <br /> Buffer's Unique Culture
@@ -84,21 +112,22 @@ function ToolsFunc() {
             of
             <br /> work.
           </p>
-          <div className="flex space-x-5 ">
+          <div className="flex items-center space-x-5 ">
             <span>
               <p>Apr27,2023</p>
             </span>
-            <span>
-              <p>5 min read</p>
+            <span className="flex items-center">
+              <img src={eyeglasses} alt="" className="w-10 h-10 " />
+              <p className="">5 min read</p>
             </span>
-            <span>
-              <p>Apr27,2023</p>
+            <span className="bg-[#e1e0e0] p-2">
+              <p className="">Open</p>
             </span>
           </div>
           <div className="flex justify-center md:justify-start">
             <span className="">
               <img
-                src={img2}
+                src={lukas}
                 alt="img2"
                 className="w-20 h-20 rounded-full border-indigo-600 border-4"
               />
@@ -131,36 +160,18 @@ function ToolsFunc() {
           ))}
         </ul>
       </div>
-      <div className="flex flex-cols-3 w-full mx-3">
-        <div className="border-2 space-x-2">
-          {Welcome.map((data, index) => (
-            <div key={index} className="w-full">
-              <img src={data.photo} alt="img1" className="p-3" />
+      <div className="">
+        <div className="space-x-2 grid grid-cols-3">
+          {filterNew.map((data, index) => (
+            <div key={index} className="border-2">
+              <img
+                src={data.photo}
+                alt="img1"
+                className="p-3 transition ease-in-out hover:-translate-y-1 hover:scale-105 duration-500"
+              />
               <h2 className="font-medium text-xl md:text-2xl p-3">
                 {data.title}
               </h2>
-              <p className="p-3 text-center md:text-left">{data.description}</p>
-            </div>
-          ))}
-        </div>
-        <div className="border-2 space-x-2 mx-2">
-          {Welcome1.map((data, index) => (
-            <div key={index} className="w-full">
-              <img src={data.photo} alt="img1" className="p-3" />
-              <h1 className="font-medium text-xl md:text-2xl p-3">
-                {data.title}
-              </h1>
-              <p className="p-3 text-center md:text-left">{data.description}</p>
-            </div>
-          ))}
-        </div>
-        <div className="border-2 space-x-2 mx-2">
-          {Welcome2.map((data, index) => (
-            <div key={index} className="w-full">
-              <img src={data.photo} alt="img1" className="p-3" />
-              <h1 className="font-medium text-xl md:text-2xl p-3">
-                {data.title}
-              </h1>
               <p className="p-3 text-center md:text-left">{data.description}</p>
             </div>
           ))}
