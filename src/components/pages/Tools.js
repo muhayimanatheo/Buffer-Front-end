@@ -1,45 +1,46 @@
 import img1 from "../../images/img1.png";
 import lukas from "../../images/lukas.jpg";
-import joshua from "../../images/joshua.jpg";
-import { useState } from "react";
+// import joshua from "../../images/joshua.jpg";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import eyeglasses from "../../images/eyeglasses.svg";
+import axios from "axios";
 
 function ToolsFunc() {
-  const Welcome = [
-    {
-      photo: img1,
-      title:
-        "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
-      description:
-        "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
-      name: "Latest Updates",
-    },
-    {
-      photo: lukas,
-      title:
-        "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
-      description:
-        "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
-      name: "Latest Updates",
-    },
-    {
-      photo: joshua,
-      title:
-        "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
-      description:
-        "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
-      name: "News",
-    },
-    {
-      photo: joshua,
-      title:
-        "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
-      description:
-        "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
-      name: "Latest Updates",
-    },
-  ];
+  // const Welcome = [
+  //   {
+  //     image: img1,
+  //     title:
+  //       "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
+  //     description:
+  //       "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+  //     name: "Latest Updates",
+  //   },
+  //   {
+  //     image: lukas,
+  //     title:
+  //       "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
+  //     description:
+  //       "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+  //     name: "Latest Updates",
+  //   },
+  //   {
+  //     image: joshua,
+  //     title:
+  //       "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
+  //     description:
+  //       "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+  //     name: "News",
+  //   },
+  //   {
+  //     image: joshua,
+  //     title:
+  //       "Trust, Transparency, and Curiosity: Batsirai Chada on Buffer's Unique Culture",
+  //     description:
+  //       "Batsirai Chada is a Growth Product Manager at Buffer, where he’s worked for about nine months.",
+  //     name: "Latest Updates",
+  //   },
+  // ];
 
   const links = [
     {
@@ -70,7 +71,36 @@ function ToolsFunc() {
     setActiveLink(tab);
   };
 
-  const filterNew = Welcome.filter((item) => item.name === activeLink);
+  // const filterNew = Welcome.filter((item) => item.name === activeLink);
+
+  const [userdata, setUserdata] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/PublicationBuffer/"
+        );
+        setUserdata(response.data);
+        console.log(response.data);
+        // console.log("Data received:");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleDelete = async (userId) => {
+    const deletePath = `http://127.0.0.1:8000/PublicationBuffer/${userId}`;
+    try {
+      const response = await axios.delete(deletePath);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -143,12 +173,12 @@ function ToolsFunc() {
           </div>
         </div>
       </main>
-      <div className="py-6 px-2 sm:py-8 sm:px-4 md:py-10 md:px-6 lg:py-12 lg:px-8 xl:py-14 xl:px-10">
-        <ul className="flex flex-wrap gap-4 justify-start sm:justify-center md:justify-start border-b-[2px] ">
+      <div className="py-6 px-2 sm:py-8 sm:px-4 md:py-10 md:px-6 lg:py-12 lg:px-8 xl:py-14 xl:px-10 sticky top-0">
+        <ul className="flex flex-wrap gap-4 justify-start sm:justify-center md:justify-start border-b-[2px] sticky top-0">
           {links.map((link) => (
             <Link
               onClick={() => handleClick(link.name)}
-              className={`text-gray-500 hover:text-blue-700 pb-2 ${
+              className={` text-gray-500 hover:text-blue-700 pb-2 ${
                 activeLink === link.name
                   ? "border-b-2 border-blue-700 -mb-[2px] text-blue-700"
                   : ""
@@ -162,17 +192,45 @@ function ToolsFunc() {
       </div>
       <div className="">
         <div className="space-x-2 grid grid-cols-3">
-          {filterNew.map((data, index) => (
-            <div key={index} className="border-2">
+          {userdata.map((data, index) => (
+            <div
+              key={index}
+              className="border-2 items-center justify-items-center"
+            >
               <img
-                src={data.photo}
-                alt="img1"
+                src={`http://127.0.0.1:8000/${data.image}`}
+                alt="Publication images"
                 className="p-3 transition ease-in-out hover:-translate-y-1 hover:scale-105 duration-500"
               />
               <h2 className="font-medium text-xl md:text-2xl p-3">
-                {data.title}
+                {data.header}
               </h2>
               <p className="p-3 text-center md:text-left">{data.description}</p>
+
+              {/* profile */}
+              <div className="flex justify-center md:justify-start">
+                <span className="">
+                  <img
+                    src={lukas}
+                    alt="img2"
+                    className="w-[3rem] h-[3rem] rounded-full border-indigo-600 border-4"
+                  />
+                </span>
+                <span className="mx-10 py-2">
+                  <ul>
+                    <li className="text-xl md:text-2xl font-normal">
+                      <a href="#/"> Tamilore Oladipo</a>
+                    </li>
+                  </ul>
+                </span>
+              </div>
+
+              <button
+                onClick={() => handleDelete(data.id)}
+                className="bg-[#F4A5C5] text-white font-serif font-bold px-4 py-2 rounded-lg mt-2 max-auto block place-content-center mx-16"
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>

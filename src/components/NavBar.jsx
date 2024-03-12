@@ -19,35 +19,35 @@ function NavBar() {
     {/* Buffer Links */}
     <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 relative">
         <div className="relative">
-            <button onClick={() => setToolsOpen(!toolsOpen)} className="flex items-center focus:outline-none">
+            <button onClick={() => setToolsOpen(!toolsOpen)} className="flex items-center focus:outline-none hover:text-[#1F35B3] font-semibold ">
                 Tools <img src={dropdown} alt="dropdown" className="ml-1 h-4" />
             </button>
             {toolsOpen && (
-                <div className="absolute md:left-0 md:top-full md:mt-1 bg-white border border-gray-300 rounded-md shadow-lg py-1">
-                    <Link to="/">Dropdown </Link>
-                    <Link to="/"></Link>
-                    <Link to="/"></Link>
+                <div className="absolute flex flex-col md:left-0 md:top-full md:mt-1 bg-white border border-gray-300 rounded-md shadow-lg py-1 w-[9rem] p-2 hover:text-[#1F35B3] font-semibold ">
+                    <Link to="/">Publishing </Link>
+                    <Link to="/">Analytics</Link>
+                    <Link to="/">Engagement</Link>
                 </div>
             )}
         </div>
         <div className=" relative">
-            <Link to="/Channels" className="flex items-center" onClick={() => setChannelsOpen(!channelsOpen)}>
+            <Link to="/Channels" className="flex items-center hover:text-[#1F35B3] font-semibold " onClick={() => setChannelsOpen(!channelsOpen)}>
                 Channels <img src={dropdown} alt="dropdown" className="ml-1 h-4" />
             </Link>
             {channelsOpen && (
                 <div className="flex flex-wrap absolute md:left-0 md:top-full md:mt-1 bg-white border border-gray-300 rounded-md shadow-lg py-1 mx-5">
                     <Link to="/"></Link>
-                    <Link to="/">Hello</Link>
+                    <Link to="/"></Link>
                 </div>
             )}
         </div>
-        <Link to="/Pricing">Pricing</Link>
-        <Link to="/Blog">Blog</Link>
+        <Link to="/Pricing" className="hover:text-[#1F35B3] font-semibold ">Pricing</Link>
+        <Link to="/Blog" className="hover:text-[#1F35B3] font-semibold ">Blog</Link>
     </div>
     <div className="flex items-center space-x-4">
         <img src={search} alt="search" className="w-6 h-6" />
-        <button className="text-[#2C73FF]">Log in</button>
-        <button className="bg-[#2C4BFF] text-white px-4 py-2 rounded-sm">Get started now</button>
+        <Link className="text-[#2C73FF] " to="/login">Log in</Link>
+        <Link className="bg-[#2C4BFF] text-white px-4 py-2 rounded-sm" to ="">Get started now</Link>
     </div>
 </nav>
 

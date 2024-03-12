@@ -5,6 +5,8 @@ import ToolsFunc from './components/pages/Tools';
 import ChannelsFunc from './components/pages/Channels';
 import PricingFunc from './components/pages/Pricing';
 import BlogFunc from './components/pages/Blog';
+import MyFunction from './components/pages/login';
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <Route path="/Channels" element={<ChannelsFunc />} />
           <Route path="/Pricing" element={<PricingFunc />} />
           <Route path="/Blog" element={<BlogFunc />} />
+          <Route path="/login" element={<MyFunction />} />
         </Route>
       </Routes>
     </Router>
