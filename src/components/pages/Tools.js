@@ -227,7 +227,7 @@ function ToolsFunc() {
 
               <button
                 onClick={() => handleDelete(data.id)}
-                className="bg-[#F4A5C5] text-white font-serif font-bold px-4 py-2 rounded-lg mt-2 max-auto block place-content-center mx-16"
+                className="bg-[#F4A5C5] text-white font-serif font-bold px-4 py-2 rounded-lg mt-2 mb-3 max-auto block place-content-center mx-16"
               >
                 Delete
               </button>

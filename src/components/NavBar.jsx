@@ -47,7 +47,7 @@ function NavBar() {
     <div className="flex items-center space-x-4">
         <img src={search} alt="search" className="w-6 h-6" />
         <Link className="text-[#2C73FF] " to="/login">Log in</Link>
-        <Link className="bg-[#2C4BFF] text-white px-4 py-2 rounded-sm" to ="">Get started now</Link>
+        <Link className="bg-[#2C4BFF] text-white px-4 py-2 rounded-sm" to ="/signup">Get started now</Link>
     </div>
 </nav>
 
