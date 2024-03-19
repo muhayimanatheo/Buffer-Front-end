@@ -8,7 +8,6 @@ import BlogFunc from './components/pages/Blog';
 import MyFunction from './components/pages/login';
 import SignupForm from './components/pages/signup';
 
-
 function App() {
   return (
     <Router>
